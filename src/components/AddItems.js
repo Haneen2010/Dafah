@@ -15,6 +15,7 @@ class AddItems extends Component {
     this.onChangeimg = this.onChangeimg.bind(this);
     this.onChangetype = this.onChangetype.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
+    this.onChangeUserName = this.onChangeUserName.bind(this);
     this.state = {
       itemName: "",
       category: "Women",
@@ -23,6 +24,7 @@ class AddItems extends Component {
       image: null,
       url: "",
       type: "Jacket",
+      username : ""
     };
   }
   //List of category
@@ -61,6 +63,12 @@ class AddItems extends Component {
       });
     } else console.log("error in onchangeimg");
   }
+  onChangeUserName(e){
+    this.setState({
+      username: e.target.value,
+    });
+
+  }
   handleUpload() {
     // e.preventDefault();
     const uploadTask = storage
@@ -93,6 +101,7 @@ class AddItems extends Component {
       description: this.state.description,
       phoneNumber: this.state.phoneNumber,
       type: this.state.type,
+      username : this.state.username,
       image: this.state.url,
     };
     console.log(item);
@@ -186,6 +195,19 @@ class AddItems extends Component {
                 value={this.state.phoneNumber}
                 onChange={this.onChangePhoneNumber}
                 placeholder="Please insert your phone number"
+              />
+            </div>
+            <br />
+            <br />
+            <div className="col">
+              <label> Donor Name </label>
+              <input
+                 ref="userInput"
+                 required="true"
+                 className="form-control"
+                value={this.state.username}
+                onChange={this.onChangeUserName}
+                placeholder="Please insert your name"
               />
             </div>
             <br />

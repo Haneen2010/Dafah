@@ -49,7 +49,7 @@ export default class Login extends Component {
           .then((response) => {
             console.log(response, "You are authenticated");
             
-            //window.location = "/AddItems";
+            window.location = "/AddItems";
           })
           .catch((err) => alert("Incorrect token"));
       })

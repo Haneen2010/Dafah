@@ -19,12 +19,13 @@ router.route("/add").post((req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const image = req.body.image;
   const type = req.body.type;
-  
+  const username = req.body.username;
   const newItem = new AddItems({
     itemName,
     category,
     description,
     phoneNumber,
+    username,
     image,
     type,
   });

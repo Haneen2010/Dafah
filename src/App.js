@@ -14,9 +14,11 @@ import EditItems from "./components/edit";
 
 function App() {
   return (
+    
     <Router className="container">
       <div>
         <Navbar />
+        
         <Route path="/homepage" component={Homepage} />
         <ProtectedRoute
           path="/ItemsList"

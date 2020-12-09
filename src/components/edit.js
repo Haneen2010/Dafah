@@ -71,7 +71,7 @@ export default class EditItems extends Component {
       phoneNumber: e.target.value,
     });
   }
-
+  
   onSubmit(e) {
     
     e.preventDefault();
@@ -185,7 +185,6 @@ export default class EditItems extends Component {
           </div>
 
           <br />
-
           <div>
             <button type="submit" value="Submit" className="btn btn-dark">
               Save
