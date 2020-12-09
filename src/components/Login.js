@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Footer from "./Footer";
+import EditItems from "./edit";
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -12,7 +14,17 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      value :false
     };
+  }
+  
+ isAuthenticated(){
+      this.setState({
+        value: true,
+      });
+        console.log(this.state.value)
+        this.props.isAuthenticatedEdit(this.state.value)
+        //return val;
   }
 
   onChangeUsername(e) {
@@ -44,7 +56,10 @@ export default class Login extends Component {
           .post("http://localhost:3000/addUser/verify", response)
           .then((response) => {
             console.log(response, "You are authenticated");
-            window.location = "/AddItems";
+            var value = true;
+            this.state.isAuthenticated();
+            
+            //window.location = "/AddItems";
           })
           .catch((err) => alert("Incorrect token"));
       })
@@ -109,3 +124,5 @@ export default class Login extends Component {
     );
   }
 }
+
+

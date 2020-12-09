@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Login from "./Login";
 
 export default class EditItems extends Component {
   constructor(props) {
@@ -20,6 +21,13 @@ export default class EditItems extends Component {
       phoneNumber: "",
       type: "",
     };
+  }
+
+  isAuthenticatedEdit(value){
+
+    console.log(value)
+    
+    
   }
 
   componentDidMount() {
@@ -71,6 +79,7 @@ export default class EditItems extends Component {
   }
 
   onSubmit(e) {
+    
     e.preventDefault();
     const item = {
       itemName: this.state.itemName,
@@ -86,9 +95,9 @@ export default class EditItems extends Component {
         "http://localhost:3000/addItems/update/" + this.props.match.params.id,
         item
       )
-      .then((res) => console.log(res.data, "     uptadeeeeeeeeeeeeeeeeeeeeeee"));
+      .then((res) => console.log(res.data, " .....  uptadeeeeeeeeeeeeeeeeeeeeeee "));
        
-      window.location = "/ItemsList";
+       window.location = "/ItemsList";
   }
 
   render() {
@@ -193,3 +202,4 @@ export default class EditItems extends Component {
     );
   }
 }
+
