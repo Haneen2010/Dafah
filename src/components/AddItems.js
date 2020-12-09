@@ -61,8 +61,8 @@ class AddItems extends Component {
       });
     } else console.log("error in onchangeimg");
   }
-  handleUpload() {
-    // e.preventDefault();
+  handleUpload(e) {
+    e.preventDefault();
     const uploadTask = storage
       .ref(`/images/${this.state.image.name}`)
       .put(this.state.image);
@@ -96,31 +96,22 @@ class AddItems extends Component {
       image: this.state.url,
     };
     console.log(item);
-
     axios.post("http://localhost:3000/addItems/add", item)
       .then(res => console.log(res.data));
-
     window.location = '/ItemsList'
-
   }
   render() {
     console.log("image", this.state.image);
     return (
       <div>
         <br />
-
         <div className = "container">
-       
-          <form className="text-center border border-light p-9" action="#!" onSubmit = {this.onSubmit}>
-
+          <form className="text-center border border-light p-9" action="#!" >
             <h3> "Only by giving you are able to receive more than you already have." -Jim Rohn </h3>
-
             <p className="h4 mb-4">Donate Your Item</p>
-
                 <div className="col">
                 <label>Item</label>
                 <input 
-
                 required="true"
                 type="text"
                 className="form-control"
@@ -207,7 +198,7 @@ class AddItems extends Component {
             </div>
             <br />
             <div>
-              <button type="submit" className="btn btn-deep-orange darken-4">
+              <button type="submit" className="btn btn-deep-orange darken-4" onClick = {this.onSubmit}>
                 Submit
               </button>
             </div>

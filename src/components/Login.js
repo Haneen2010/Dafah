@@ -56,8 +56,8 @@ export default class Login extends Component {
           .post("http://localhost:3000/addUser/verify", response)
           .then((response) => {
             console.log(response, "You are authenticated");
-            var value = true;
-            this.state.isAuthenticated();
+            this.state.value = true ;
+           // this.state.isAuthenticated();
             
             //window.location = "/AddItems";
           })

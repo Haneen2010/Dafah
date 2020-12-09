@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import Footer from "./Footer";
+import { Form , DropdownButton } from 'react-bootstrap';
 const ClothesItem = (props) => (
   <tr>
     <td>{props.item.itemName}</td>
@@ -20,12 +21,13 @@ const ClothesItem = (props) => (
     </td>
     <td>
       <Link
+      style={{width:120, height:40}}
         to={"/edit/" + props.item._id}
         className="btn btn-deep-orange darken-4"
       >
         Edit
       </Link>
-      <button
+      <button style={{width:120,height:40}}
         type="button"
         className="btn btn-deep-orange darken-4"
         onClick={() => {
@@ -107,38 +109,30 @@ class ItemsList extends Component {
         <br />
         <div className="container text-center border border-light p-9">
           <h2>Clothing</h2>
-          <lable>
-            Select by category
-            <select
-              ref="userInput"
-              required="true"
-              value={this.state.category}
-              onChange={this.onChangecategory.bind(this)}
-            >
-              <option value=""></option>
-              <option value="Women">Women</option>
-              <option value="Men">Men</option>
-              <option value="Kids">Kids</option>
-            </select>
-          </lable>
-          <lable>
-            Select by type
-            <select
-              ref="userInput"
-              required="true"
-              value={this.state.type}
-              onChange={this.onChangetype.bind(this)}
-            >
-              <option value=""></option>
-              <option value="Shoes">Shoes</option>
-              <option value="Dress">Dress</option>
-              <option value="Jacket">Jacket</option>
-              <option value="Blouse">Blouse</option>
-              <option value="Gloves">Gloves</option>
-              <option value="Hat">Hat</option>
-              <option value="Scarf">Scarf</option>
-            </select>
-          </lable>
+          <Form>
+  <Form.Group controlId="exampleForm.SelectCustomSizeSm"  onChange={this.onChangetype.bind(this)} >
+    {/* <Form.Label>Select by type</Form.Label> */}
+    <Form.Control as="select"  size="sm" custom style={{width:155, color:'white', border:'orange', margin:"50px 0px 10px 250px", background:'#212121'}} >
+    <option value="">Select by type</option>
+    <option value="Shoes">Shoes</option>
+    <option value="Dress">Dress</option>
+    <option value="Jacket">Jacket</option>
+    <option value="Blouse">Blouse</option>
+    <option value="Gloves">Gloves</option>
+    <option value="Hat">Hat</option>
+    <option value="Scarf">Scarf</option>
+    </Form.Control>
+  </Form.Group>
+  <Form.Group controlId="exampleForm.SelectCustomSizeSm" >
+    {/* <Form.Label>Select by category</Form.Label> */}
+    <Form.Control as="select" size="sm" custom onChange={this.onChangecategory.bind(this)} style={{width:155, margin:'-100px 250px 10px 0px', background:'#212121',color:'white'}}>
+    <option value="">Select by category</option>
+    <option value="Women">Women</option>
+    <option value="Men">Men</option>
+    <option value="Kids">Kids</option>
+    </Form.Control>
+  </Form.Group>
+</Form>
           <table className="table">
             <thead className="thead">
               <tr>
@@ -159,3 +153,14 @@ class ItemsList extends Component {
   }
 }
 export default withRouter(ItemsList);
+
+
+
+
+
+
+
+
+
+
+

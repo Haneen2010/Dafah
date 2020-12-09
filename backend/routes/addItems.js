@@ -44,7 +44,6 @@ router.route("/:id").delete((req, res) => {
     .then(() => res.json("Item is deleted!"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-
 router.route("/update/:id").post((req, res) => {
   AddItems.findById(req.params.id)
     .then((items) => {

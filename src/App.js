@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
-
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
 import AddItems from "./components/AddItems";
@@ -18,7 +17,6 @@ function App() {
     <Router className="container">
       <div>
         <Navbar />
-
         <Route path="/homepage" component={Homepage} />
         <ProtectedRoute
           path="/ItemsList"
