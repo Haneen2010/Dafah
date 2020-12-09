@@ -20,6 +20,7 @@ export default class EditItems extends Component {
       description: "",
       phoneNumber: "",
       type: "",
+      username: "",
     };
   }
 
@@ -34,6 +35,7 @@ export default class EditItems extends Component {
           category: response.data.category,
           description: response.data.description,
           phoneNumber: response.data.phoneNumber,
+          username :  response.data.username,
           type: response.data.type,
         });
       })
@@ -73,7 +75,7 @@ export default class EditItems extends Component {
   }
   
   onSubmit(e) {
-    
+    if(window.localStorage.username === this.state.username){
     e.preventDefault();
     const item = {
       itemName: this.state.itemName,
@@ -92,6 +94,9 @@ export default class EditItems extends Component {
       .then((res) => console.log(res.data, " .....  uptadeeeeeeeeeeeeeeeeeeeeeee "));
        
        window.location = "/ItemsList";
+      }else {
+        alert("you can only Edit what you Added !")
+      }
   }
 
   render() {
