@@ -84,10 +84,11 @@ router.route("/update/:id").post((req, res) => {
       items.description = req.body.description;
       items.phoneNumber = req.body.phoneNumber;
       items.type = req.body.type;
-      items.image = req.body.url;
+      //items.image = req.body.url;
 
       items
         .save()
+        console.log("updaaaaaaaaaaaaattttttttttttttttttt....  B")
         .then(() => res.json("Item is updated!"))
         .catch((err) => res.status(400).json("Error: " + err));
     })

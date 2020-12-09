@@ -26,6 +26,7 @@ export default class EditItems extends Component {
     axios
       .get("http://localhost:3000/addItems/" + this.props.match.params.id)
       .then((response) => {
+        console.log(response , "     .............componentDidMount............")
         this.setState({
           itemName: response.data.itemName,
           category: response.data.category,
@@ -85,9 +86,9 @@ export default class EditItems extends Component {
         "http://localhost:3000/addItems/update/" + this.props.match.params.id,
         item
       )
-      .then((res) => console.log(res.data));
-
-    window.location = "/ItemsList";
+      .then((res) => console.log(res.data, "     uptadeeeeeeeeeeeeeeeeeeeeeee"));
+       
+      window.location = "/ItemsList";
   }
 
   render() {
