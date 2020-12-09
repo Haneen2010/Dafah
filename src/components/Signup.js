@@ -6,7 +6,7 @@ import Footer from './Footer';
 export default class Signup extends Component {
     constructor(props) {
         super(props);
-            
+
         //bind functions, you can use this.function without the need to bind it everytime
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -21,6 +21,10 @@ export default class Signup extends Component {
             password:'',
             phone:'',
             address:'',
+            usernameError: '',
+            passwordError: '',
+            phoneError: '',
+            addressError: ''
           }
 
         }
@@ -50,6 +54,33 @@ export default class Signup extends Component {
                 address : e.target.value
             })
           }
+
+          validate = () => {
+            let usernameError = "";
+            let passwordError = "";
+            let phoneError = "";
+            let addressError = "";
+
+            if (!this.state.username) {
+              usernameError = 'your username cannot be blank, please try to make it more than 3 characters!'
+            }
+            if (!this.state.password) {
+              passwordError = 'your password cannot be blank, please try to make it more than 5 characters!'
+            }
+            if (!this.state.phone) {
+              phoneError = 'your phone number cannot be blank, it has to be 10 numbers or more!'
+            }
+            if (!this.state.address) {
+              addressError = 'your phone address cannot be blank, please try to write more than 4 characters!'
+            }
+
+            if (usernameError || passwordError || phoneError || addressError) {
+              this.setState({usernameError, passwordError, phoneError, addressError});
+              return false;
+            }
+            return true;
+          }
+
           onSubmit(e) {
             e.preventDefault();
         //where we set the state and send it in the post request
@@ -59,32 +90,22 @@ export default class Signup extends Component {
               phone: this.state.phone,
               address: this.state.address
             }
-            //post request tosend the data to the serverwhereitwill be saved
-            //this condetion to prevent users from creating short user name for securty
-            // if (this.state.username.length < 4 ){
-            // alert('please choose another name')
-            // }
-            //the input should be a number this should give the user an alreat if they type anything not a number
-            // if (this.state.phone !== number){
-            //   alert('please make sure to fill in phone with numbers only')
-            // }
-            //add conctions if the user name already taken
-            //if(this.state.username )
-           
             axios.post("http://localhost:3000/addUser/adduser", user)
             .then(res => {
             // console.log(user , "uuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-
               window.location = '/login'
-
             })  
-             
            .catch(err => alert('user name or phone number is used') );
-          
-
             //console.log('user added')   
         }
         
+        handleSubmit = event => {
+          event.preventDefault();
+          const isValid = this.validate();
+          if (isValid) {
+          console.log(this.state);
+          }
+        }
         
           
 
@@ -103,8 +124,8 @@ export default class Signup extends Component {
                 <div className = "col">
                 <label > User Name </label>
                 <br></br>
-                <input required='true' type='text'className="form-control col"value= {this.setState.username}onChange={this.onChangeUsername} placeholder='User Name'/>                   
-                
+                <input required='true' type='text'className="form-control col"value= {this.setState.username}onChange={this.onChangeUsername} placeholder='User Name'/>
+                <div style={{color:"red"}}>{this.state.usernameError}</div>
                 <br></br>                
                 </div>
 
@@ -114,6 +135,7 @@ export default class Signup extends Component {
                 <label > Creat Password </label>
                 <br></br>
                 <input required='true'  type="password" name="password" className="form-control col"value= {this.setState.password} onChange={this.onChangePassword} placeholder='Creat Password'/>
+                <div style={{color:"red"}}>{this.state.passwordError}</div>
                 <br></br>
                 </div>
 
@@ -121,6 +143,7 @@ export default class Signup extends Component {
                 <label > Phone Number </label>
 
                 <input required='true'  className="form-control col"  value= {this.setState.phone} onChange={this.onChangePhone} placeholder='Phone Number'/>
+                <div style={{color:"red"}}>{this.state.phoneError}</div>
                 <br></br>
                 </div>
 
@@ -128,10 +151,11 @@ export default class Signup extends Component {
                 <label > Address </label>
                 <br></br>
                 <input required='true' type='text' className="form-control col" value= {this.setState.address} onChange={this.onChangeAddress} placeholder='Address'/>
+                <div style={{color:"red"}}>{this.state.addressError}</div>
                 <br></br>
                 </div>
 
-                <input type='submit' value='Creat Account' className="btn btn-deep-orange darken-4"/>
+                <input type='submit' value='Creat Account' className="btn btn-deep-orange darken-4" onClick={this.handleSubmit}/>
                 <br></br>
                 <br></br>
                 <b>If you already have an account<a href='/login'> Log In </a></b>
@@ -141,8 +165,6 @@ export default class Signup extends Component {
             </div>
             <Footer />
             </div>
-          
-         
         )
     }
 }
