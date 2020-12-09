@@ -23,12 +23,6 @@ export default class EditItems extends Component {
     };
   }
 
-  isAuthenticatedEdit(value){
-
-    console.log(value)
-    
-    
-  }
 
   componentDidMount() {
     axios

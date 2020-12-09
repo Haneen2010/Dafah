@@ -14,18 +14,10 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      value :false
+      
     };
   }
   
- isAuthenticated(){
-      this.setState({
-        value: true,
-      });
-        console.log(this.state.value)
-        this.props.isAuthenticatedEdit(this.state.value)
-        //return val;
-  }
 
   onChangeUsername(e) {
     this.setState({
@@ -51,13 +43,11 @@ export default class Login extends Component {
       .then((response) => {
         console.log(response, " toooooooooooooooooooken");
         window.localStorage.setItem("token", response.data);
-        /// after signing the token , verify the token
+        window.localStorage.setItem( "username",this.state.username);
         axios
           .post("http://localhost:3000/addUser/verify", response)
           .then((response) => {
             console.log(response, "You are authenticated");
-            this.state.value = true ;
-           // this.state.isAuthenticated();
             
             //window.location = "/AddItems";
           })
